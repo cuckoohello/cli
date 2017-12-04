@@ -1477,6 +1477,7 @@ services:
   foo:
     image: busybox
     isolation: process
+    runtime: runc
 configs:
   foo:
     name: fooqux
@@ -1497,6 +1498,7 @@ secrets:
 	assert.Len(t, actual.Secrets, 2)
 	assert.Len(t, actual.Configs, 2)
 	assert.Equal(t, "process", actual.Services[0].Isolation)
+	assert.Equal(t, "runc", actual.Services[0].Runtime)
 }
 
 func TestLoadV35InvalidIsolation(t *testing.T) {
@@ -1514,6 +1516,22 @@ configs:
 	require.NoError(t, err)
 	require.Len(t, actual.Services, 1)
 	assert.Equal(t, "invalid", actual.Services[0].Isolation)
+}
+
+func TestLoadV35InvalidRuntime(t *testing.T) {
+	actual, err := loadYAML(`
+version: "3.5"
+services:
+  foo:
+    image: busybox
+    runtime: invalid
+configs:
+  super:
+    external: true
+`)
+	require.NoError(t, err)
+	require.Len(t, actual.Services, 1)
+	assert.Equal(t, "invalid", actual.Services[0].Runtime)
 }
 
 func TestInvalidSecretExternalNameAndNameCombination(t *testing.T) {

@@ -548,6 +548,36 @@ func TestUpdateIsolationInvalid(t *testing.T) {
 	assert.Equal(t, container.Isolation("test"), spec.TaskTemplate.ContainerSpec.Isolation)
 }
 
+func TestUpdateRuntimeValid(t *testing.T) {
+	flags := newUpdateCommand(nil).Flags()
+	err := flags.Set("runtime", "runc")
+	require.NoError(t, err)
+	spec := swarm.ServiceSpec{
+		TaskTemplate: swarm.TaskSpec{
+			ContainerSpec: &swarm.ContainerSpec{},
+		},
+	}
+	err = updateService(context.Background(), nil, flags, &spec)
+	require.NoError(t, err)
+	assert.Equal(t, "runc", spec.TaskTemplate.ContainerSpec.Runtime)
+}
+
+func TestUpdateRuntimeInvalid(t *testing.T) {
+	// validation depends on daemon os / version so validation should be done on the daemon side
+	flags := newUpdateCommand(nil).Flags()
+	err := flags.Set("runtime", "test")
+	require.NoError(t, err)
+	spec := swarm.ServiceSpec{
+		TaskTemplate: swarm.TaskSpec{
+			ContainerSpec: &swarm.ContainerSpec{},
+		},
+	}
+	err = updateService(context.Background(), nil, flags, &spec)
+	require.NoError(t, err)
+	assert.Equal(t, "test", spec.TaskTemplate.ContainerSpec.Runtime)
+}
+
+
 func TestAddGenericResources(t *testing.T) {
 	task := &swarm.TaskSpec{}
 	flags := newUpdateCommand(nil).Flags()

@@ -150,6 +150,7 @@ func Service(
 				ReadOnly:        service.ReadOnly,
 				Privileges:      &privileges,
 				Isolation:       container.Isolation(service.Isolation),
+				Runtime:         service.Runtime,
 			},
 			LogDriver:     logDriver,
 			Resources:     resources,

@@ -127,6 +127,7 @@ type ServiceConfig struct {
 	Volumes         []ServiceVolumeConfig
 	WorkingDir      string `mapstructure:"working_dir"`
 	Isolation       string `mapstructure:"isolation"`
+	Runtime         string `mapstructure:"runtime"`
 }
 
 // BuildConfig is a type for build

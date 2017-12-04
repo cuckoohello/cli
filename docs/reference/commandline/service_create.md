@@ -72,6 +72,7 @@ Options:
       --rollback-monitor duration          Duration after each task rollback to monitor for failure (ns|us|ms|s|m|h) (default 5s)
       --rollback-order string              Rollback order ("start-first"|"stop-first") (default "stop-first")
       --rollback-parallelism uint          Maximum number of tasks rolled back simultaneously (0 to roll back all at once) (default 1)
+      --runtime string                     Service container runtime mode
       --secret secret                      Specify secrets to expose to the service
       --stop-grace-period duration         Time to wait before force killing a container (ns|us|ms|s|m|h) (default 10s)
       --stop-signal string                 Signal to stop the container

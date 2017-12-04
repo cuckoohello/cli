@@ -306,6 +306,7 @@ func updateService(ctx context.Context, apiClient client.NetworkAPIClient, flags
 	updateString(flagWorkdir, &cspec.Dir)
 	updateString(flagUser, &cspec.User)
 	updateString(flagHostname, &cspec.Hostname)
+	updateString(flagRuntime, &cspec.Runtime)
 	if err := updateIsolation(flagIsolation, &cspec.Isolation); err != nil {
 		return err
 	}

@@ -70,4 +70,5 @@ type ContainerSpec struct {
 	Secrets   []*SecretReference  `json:",omitempty"`
 	Configs   []*ConfigReference  `json:",omitempty"`
 	Isolation container.Isolation `json:",omitempty"`
+	Runtime   string              `json:",omitempty"`
 }

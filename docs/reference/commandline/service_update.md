@@ -88,6 +88,7 @@ Options:
       --rollback-monitor duration          Duration after each task rollback to monitor for failure (ns|us|ms|s|m|h)
       --rollback-order string              Rollback order ("start-first"|"stop-first")
       --rollback-parallelism uint          Maximum number of tasks rolled back simultaneously (0 to roll back all at once)
+      --runtime string                     Service container runtime mode
       --secret-add secret                  Add or update a secret on a service
       --secret-rm list                     Remove a secret
       --stop-grace-period duration         Time to wait before force killing a container (ns|us|ms|s|m|h)

@@ -437,6 +437,15 @@ func TestServiceConvertsIsolation(t *testing.T) {
 	assert.Equal(t, container.IsolationHyperV, result.TaskTemplate.ContainerSpec.Isolation)
 }
 
+func TestServiceConvertsRuntime(t *testing.T) {
+	src := composetypes.ServiceConfig{
+		Runtime: "nvidia",
+	}
+	result, err := Service("1.35", Namespace{name: "foo"}, src, nil, nil, nil, nil)
+	require.NoError(t, err)
+  assert.Equal(t, "nvidia", result.TaskTemplate.ContainerSpec.Runtime)
+}
+
 func TestConvertServiceSecrets(t *testing.T) {
 	namespace := Namespace{name: "foo"}
 	secrets := []composetypes.ServiceSecretConfig{

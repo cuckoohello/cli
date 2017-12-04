@@ -1977,6 +1977,7 @@ __docker_service_subcommand() {
         "($help)--rollback-max-failure-ratio=[Failure rate to tolerate during a rollback]:failure rate: "
         "($help)--rollback-monitor=[Duration after each task rollback to monitor for failure]:duration: "
         "($help)--rollback-parallelism=[Maximum number of tasks rolled back simultaneously]:number: "
+        "($help)--runtime=[Service container runtime mode]:runtime:__docker_complete_runtimes"
         "($help)*--secret=[Specify secrets to expose to the service]:secret:__docker_complete_secrets"
         "($help)--stop-grace-period=[Time to wait before force killing a container]:grace period: "
         "($help)--stop-signal=[Signal to stop the container]:signal:_signals"

@@ -116,3 +116,16 @@ func TestValidateIsolation(t *testing.T) {
 	}
 	assert.NoError(t, Validate(config, "3.5"))
 }
+
+func TestValidateRuntime(t *testing.T) {
+	config := dict{
+		"version": "3.5",
+		"services": dict{
+			"foo": dict{
+				"image":   "busybox",
+				"runtime": "some-runtime-value",
+			},
+		},
+	}
+	assert.NoError(t, Validate(config, "3.5"))
+}

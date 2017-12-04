@@ -514,6 +514,7 @@ type serviceOptions struct {
 	configs     opts.ConfigOpt
 
 	isolation string
+	runtime   string
 }
 
 func newServiceOptions() *serviceOptions {
@@ -629,6 +630,7 @@ func (options *serviceOptions) ToService(ctx context.Context, apiClient client.N
 				StopGracePeriod: options.ToStopGracePeriod(flags),
 				Healthcheck:     healthConfig,
 				Isolation:       container.Isolation(options.isolation),
+				Runtime:         options.runtime,
 			},
 			Networks:      networks,
 			Resources:     resources,
@@ -801,6 +803,8 @@ func addServiceFlags(flags *pflag.FlagSet, opts *serviceOptions, defaultFlagValu
 	flags.SetAnnotation(flagStopSignal, "version", []string{"1.28"})
 	flags.StringVar(&opts.isolation, flagIsolation, "", "Service container isolation mode")
 	flags.SetAnnotation(flagIsolation, "version", []string{"1.35"})
+	flags.StringVar(&opts.runtime, flagRuntime, "", "Service container runtime mode")
+	flags.SetAnnotation(flagRuntime, "version", []string{"1.35"})
 }
 
 const (
@@ -899,4 +903,5 @@ const (
 	flagConfigAdd               = "config-add"
 	flagConfigRemove            = "config-rm"
 	flagIsolation               = "isolation"
+	flagRuntime                 = "runtime"
 )
